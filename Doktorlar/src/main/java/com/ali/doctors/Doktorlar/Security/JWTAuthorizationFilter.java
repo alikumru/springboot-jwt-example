@@ -57,7 +57,6 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
                 .verify(token.replace(SecurityConstant.TOKEN_PREFIX, ""))
                 .getSubject();
 	
-
 		UserDetails userDetails = customUserDetailService.loadUserByUsername(username);
 		ApplicationUser applicationUser = (ApplicationUser) customUserDetailService.loadApplicationUserByUsername(username);
         return username != null ? new UsernamePasswordAuthenticationToken(applicationUser, null,userDetails.getAuthorities()) : null;

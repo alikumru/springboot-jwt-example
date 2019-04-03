@@ -46,7 +46,6 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 			e.printStackTrace();
 		}
 		return null;
-
 	}
 
 	@Override
