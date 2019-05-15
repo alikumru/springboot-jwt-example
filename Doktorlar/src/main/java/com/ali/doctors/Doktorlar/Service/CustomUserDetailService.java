@@ -15,7 +15,7 @@ import com.ali.doctors.Doktorlar.Model.ApplicationUser;
 @Component
 public class CustomUserDetailService implements UserDetailsService{
 
-	
+	//Test
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
