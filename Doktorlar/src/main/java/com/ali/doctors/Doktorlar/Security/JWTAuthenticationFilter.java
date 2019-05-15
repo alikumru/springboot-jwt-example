@@ -36,8 +36,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
 	@Override // {"username:ali","password:1234"}
 	public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) {
-		try {
-			
+		try {			
 			ApplicationUser applicationUser = new ObjectMapper().readValue(request.getInputStream(),ApplicationUser.class);
 			return authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
 					applicationUser.getUsername(), applicationUser.getPassword()));
@@ -52,6 +51,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 	protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain,
 			Authentication authResult) throws IOException, ServletException {
 		ZonedDateTime zonedDateTimeUTC = ZonedDateTime.now(ZoneOffset.UTC).plus(SecurityConstant.EXPIRATION_TIME,ChronoUnit.MILLIS);
+	
 		String token = JWT.create()
                 .withSubject(((User) authResult.getPrincipal()).getUsername())
                 .withExpiresAt(new Date(System.currentTimeMillis() + SecurityConstant.EXPIRATION_TIME))
